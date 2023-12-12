@@ -7,7 +7,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'package:auth_repo/auth_repo.dart';
-import 'sign_in_services_test.mocks.dart';
+import 'sign_in_service_test.mocks.dart';
 
 @GenerateNiceMocks([
   MockSpec<FirebaseAuth>(),
@@ -240,7 +240,7 @@ void main() {
         () {
           expect(
             signInServiceWithoutGoogle.google,
-            throwsA(isA<MissingDependenciesException>()),
+            throwsA(isA<MissingDependencyException>()),
           );
         },
       );

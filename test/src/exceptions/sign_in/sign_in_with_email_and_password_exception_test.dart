@@ -5,48 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:auth_repo/auth_repo.dart';
 
 void main() {
-  group('SignInWithEmailAndPasswordException Tests', () {
-    test(
-      'should return the default message',
-      () => expect(
-        '${const SignInWithEmailAndPasswordException()}',
-        'An unknown exception occurred.',
-      ),
-    );
-
-    test(
-      'should return correct message for invalid-email',
-      () => expect(
-        '${SignInWithEmailAndPasswordException.fromCode('invalid-email')}',
-        'Email is not valid or badly formatted.',
-      ),
-    );
-
-    test(
-      'should return correct message for user-disabled',
-      () => expect(
-        '${SignInWithEmailAndPasswordException.fromCode('user-disabled')}',
-        'This user has been disabled. Please contact support for help.',
-      ),
-    );
-
-    test(
-      'should return correct message for user-not-found',
-      () => expect(
-        '${SignInWithEmailAndPasswordException.fromCode('user-not-found')}',
-        'Email is not found, please create an account.',
-      ),
-    );
-
-    test(
-      'should return correct message for wrong-password',
-      () => expect(
-        '${SignInWithEmailAndPasswordException.fromCode('wrong-password')}',
-        'Incorrect password, please try again.',
-      ),
-    );
-  });
-
   group('SignInWithGoogleException Tests', () {
     test(
       'should return the default message',
@@ -125,24 +83,6 @@ void main() {
       () => expect(
         '${SignInWithGoogleException.fromCode('user-cancelled')}',
         'User has cancelled the action.',
-      ),
-    );
-  });
-
-  group('SignInAnonymouslyException Tests', () {
-    test(
-      'should return the default message',
-      () => expect(
-        '${const SignInAnonymouslyException()}',
-        'An unknown exception occurred.',
-      ),
-    );
-
-    test(
-      'should return correct message for operation-not-allowed',
-      () => expect(
-        '${SignInAnonymouslyException.fromCode('operation-not-allowed')}',
-        'Operation is not allowed.  Please contact support.',
       ),
     );
   });

@@ -8,7 +8,7 @@ void main() {
       'should return correct message for GoogleSignIn dependency',
       () {
         expect(
-          '${MissingDependenciesException.googleSignIn()}',
+          '${MissingDependencyException.googleSignIn()}',
           'Missing dependency: GoogleSignIn ',
         );
       },

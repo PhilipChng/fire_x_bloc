@@ -33,7 +33,7 @@ class SignOutService {
   /// Throws a [SignOutException] if an exception occurs.
   Future<void> google() async {
     if (_googleSignIn == null) {
-      throw MissingDependenciesException.googleSignIn();
+      throw MissingDependencyException.googleSignIn();
     }
 
     try {

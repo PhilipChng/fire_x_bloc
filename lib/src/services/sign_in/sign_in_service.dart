@@ -41,7 +41,7 @@ class SignInService {
   /// Throws a [SignInWithGoogleException] if an exception occurs.
   Future<UserCredential> google() async {
     if (_googleSignIn == null) {
-      throw MissingDependenciesException.googleSignIn();
+      throw MissingDependencyException.googleSignIn();
     }
 
     try {
