@@ -14,17 +14,24 @@ import 'sign_out_service_test.mocks.dart';
   MockSpec<GoogleSignIn>(),
 ])
 void main() {
-  final firebaseAuth = MockFirebaseAuth();
-  final googleSignIn = MockGoogleSignIn();
-  final signOutService = SignOutService(
-    firebaseAuth: firebaseAuth,
-    googleSignIn: googleSignIn,
-  );
-  final signOutServiceWithoutGoogle = SignOutService(
-    firebaseAuth: firebaseAuth,
-  );
-
   group('SignOutService', () {
+    late MockFirebaseAuth firebaseAuth;
+    late MockGoogleSignIn googleSignIn;
+    late SignOutService signOutService;
+    late SignOutService signOutServiceWithoutGoogle;
+
+    setUp(() {
+      firebaseAuth = MockFirebaseAuth();
+      googleSignIn = MockGoogleSignIn();
+      signOutService = SignOutService(
+        firebaseAuth: firebaseAuth,
+        googleSignIn: googleSignIn,
+      );
+      signOutServiceWithoutGoogle = SignOutService(
+        firebaseAuth: firebaseAuth,
+      );
+    });
+
     group('firebase', () {
       test('successfully', () async {
         when(firebaseAuth.signOut()).thenAnswer((_) => Future.value());

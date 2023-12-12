@@ -13,13 +13,19 @@ import 'sign_up_service_test.mocks.dart';
   MockSpec<UserCredential>(),
 ])
 void main() {
-  final firebaseAuth = MockFirebaseAuth();
-  final mockUserCredential = MockUserCredential();
-  final signUpService = SignUpService(
-    firebaseAuth: firebaseAuth,
-  );
-
   group('SignUpService', () {
+    late MockFirebaseAuth firebaseAuth;
+    late MockUserCredential mockUserCredential;
+    late SignUpService signUpService;
+
+    setUp(() {
+      firebaseAuth = MockFirebaseAuth();
+      mockUserCredential = MockUserCredential();
+      signUpService = SignUpService(
+        firebaseAuth: firebaseAuth,
+      );
+    });
+
     group('email and password', () {
       test(
         'sign up successfully',

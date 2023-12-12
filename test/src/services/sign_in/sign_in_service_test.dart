@@ -18,18 +18,28 @@ import 'sign_in_service_test.mocks.dart';
 ])
 void main() {
   group('SignInService', () {
-    final firebaseAuth = MockFirebaseAuth();
-    final googleSignIn = MockGoogleSignIn();
-    final mockGoogleUser = MockGoogleSignInAccount();
-    final mockGoogleAuth = MockGoogleSignInAuthentication();
-    final mockUserCredential = MockUserCredential();
-    final signInService = SignInService(
-      firebaseAuth: firebaseAuth,
-      googleSignIn: googleSignIn,
-    );
-    final signInServiceWithoutGoogle = SignInService(
-      firebaseAuth: firebaseAuth,
-    );
+    late MockFirebaseAuth firebaseAuth;
+    late MockGoogleSignIn googleSignIn;
+    late MockGoogleSignInAccount mockGoogleUser;
+    late MockGoogleSignInAuthentication mockGoogleAuth;
+    late MockUserCredential mockUserCredential;
+    late SignInService signInService;
+    late SignInService signInServiceWithoutGoogle;
+
+    setUp(() {
+      firebaseAuth = MockFirebaseAuth();
+      googleSignIn = MockGoogleSignIn();
+      mockGoogleUser = MockGoogleSignInAccount();
+      mockGoogleAuth = MockGoogleSignInAuthentication();
+      mockUserCredential = MockUserCredential();
+      signInService = SignInService(
+        firebaseAuth: firebaseAuth,
+        googleSignIn: googleSignIn,
+      );
+      signInServiceWithoutGoogle = SignInService(
+        firebaseAuth: firebaseAuth,
+      );
+    });
 
     group('email and password', () {
       test(

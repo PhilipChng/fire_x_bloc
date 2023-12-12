@@ -19,16 +19,16 @@ build() {
     very_good test -j 4 --coverage --test-randomize-ordering-seed random
 }
 
-# Function to run tests, generate and report
-test() {
-    very_good test --coverage --test-randomize-ordering-seed random
-    genhtml coverage/lcov.info -o coverage/
-}
-
 # Function for sorting imports
 code_gen() {
     dart run build_runner build --delete-conflicting-outputs
     dart run import_sorter:main
+}
+
+# Function to run tests, generate and report
+test() {
+    very_good test --coverage --test-randomize-ordering-seed random
+    genhtml coverage/lcov.info -o coverage/
 }
 
 # Main menu for selecting an action
