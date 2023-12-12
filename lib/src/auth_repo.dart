@@ -13,43 +13,49 @@ class AuthRepo {
   AuthRepo({
     required FirebaseAuth firebaseAuth,
     GoogleSignIn? googleSignIn,
+    SignInService? signInService,
+    SignOutService? signOutService,
+    SignUpService? signUpService,
   })  : _googleSignIn = googleSignIn,
-        _signInService = SignInService(
-          firebaseAuth: firebaseAuth,
-          googleSignIn: googleSignIn,
-        ),
-        _signOutService = SignOutService(
-          firebaseAuth: firebaseAuth,
-          googleSignIn: googleSignIn,
-        ),
-        _signUpService = SignUpService(
-          firebaseAuth: firebaseAuth,
-        );
+        _signInService = signInService ??
+            SignInService(
+              firebaseAuth: firebaseAuth,
+              googleSignIn: googleSignIn,
+            ),
+        _signOutService = signOutService ??
+            SignOutService(
+              firebaseAuth: firebaseAuth,
+              googleSignIn: googleSignIn,
+            ),
+        _signUpService = signUpService ??
+            SignUpService(
+              firebaseAuth: firebaseAuth,
+            );
+
+  final GoogleSignIn? _googleSignIn;
 
   final SignInService _signInService;
   final SignOutService _signOutService;
   final SignUpService _signUpService;
 
-  final GoogleSignIn? _googleSignIn;
-
   /// Signs up with the provided [email] and [password].
-  Future<void> signUpWithEmailAndPassword(String email, String password) {
-    return _signUpService.emailAndPassword(email: email, password: password);
+  Future<void> signUpWithEmailAndPassword(String email, String password) async {
+    await _signUpService.emailAndPassword(email: email, password: password);
   }
 
   /// Signs in with the provided [email] and [password].
-  Future<void> signInWithEmailAndPassword(String email, String password) {
-    return _signInService.emailAndPassword(email: email, password: password);
+  Future<void> signInWithEmailAndPassword(String email, String password) async {
+    await _signInService.emailAndPassword(email: email, password: password);
   }
 
   /// Starts the Sign In with Google Flow.
-  Future<void> signInWithGoogle() {
-    return _signInService.google();
+  Future<void> signInWithGoogle() async {
+    await _signInService.google();
   }
 
   /// Signs in with an anonymous account.
-  Future<void> signInAnonymously() {
-    return _signInService.anonymous();
+  Future<void> signInAnonymously() async {
+    await _signInService.anonymous();
   }
 
   /// Signs out from all providers.

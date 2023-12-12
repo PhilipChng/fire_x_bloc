@@ -15,12 +15,12 @@ import 'sign_up_service_test.mocks.dart';
 void main() {
   group('SignUpService', () {
     late MockFirebaseAuth firebaseAuth;
-    late MockUserCredential mockUserCredential;
+    late MockUserCredential userCredential;
     late SignUpService signUpService;
 
     setUp(() {
       firebaseAuth = MockFirebaseAuth();
-      mockUserCredential = MockUserCredential();
+      userCredential = MockUserCredential();
       signUpService = SignUpService(
         firebaseAuth: firebaseAuth,
       );
@@ -35,7 +35,7 @@ void main() {
               email: 'email',
               password: 'password',
             ),
-          ).thenAnswer((_) => Future.value(mockUserCredential));
+          ).thenAnswer((_) => Future.value(userCredential));
 
           try {
             final userCred = await signUpService.emailAndPassword(

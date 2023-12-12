@@ -20,18 +20,18 @@ void main() {
   group('SignInService', () {
     late MockFirebaseAuth firebaseAuth;
     late MockGoogleSignIn googleSignIn;
-    late MockGoogleSignInAccount mockGoogleUser;
-    late MockGoogleSignInAuthentication mockGoogleAuth;
-    late MockUserCredential mockUserCredential;
+    late MockGoogleSignInAccount googleUser;
+    late MockGoogleSignInAuthentication googleAuth;
+    late MockUserCredential userCredential;
     late SignInService signInService;
     late SignInService signInServiceWithoutGoogle;
 
     setUp(() {
       firebaseAuth = MockFirebaseAuth();
       googleSignIn = MockGoogleSignIn();
-      mockGoogleUser = MockGoogleSignInAccount();
-      mockGoogleAuth = MockGoogleSignInAuthentication();
-      mockUserCredential = MockUserCredential();
+      googleUser = MockGoogleSignInAccount();
+      googleAuth = MockGoogleSignInAuthentication();
+      userCredential = MockUserCredential();
       signInService = SignInService(
         firebaseAuth: firebaseAuth,
         googleSignIn: googleSignIn,
@@ -50,7 +50,7 @@ void main() {
               email: 'email',
               password: 'password',
             ),
-          ).thenAnswer((_) => Future.value(mockUserCredential));
+          ).thenAnswer((_) => Future.value(userCredential));
 
           try {
             final userCred = await signInService.emailAndPassword(
@@ -138,17 +138,17 @@ void main() {
       test(
         'sign in successfully',
         () async {
-          when(mockGoogleAuth.idToken).thenReturn('mockIdToken');
-          when(mockGoogleAuth.accessToken).thenReturn('mockAccessToken');
+          when(googleAuth.idToken).thenReturn('mockIdToken');
+          when(googleAuth.accessToken).thenReturn('mockAccessToken');
           when(
             googleSignIn.signIn(),
-          ).thenAnswer((_) => Future.value(mockGoogleUser));
+          ).thenAnswer((_) => Future.value(googleUser));
           when(
-            mockGoogleUser.authentication,
-          ).thenAnswer((_) => Future.value(mockGoogleAuth));
+            googleUser.authentication,
+          ).thenAnswer((_) => Future.value(googleAuth));
           when(
             firebaseAuth.signInWithCredential(any),
-          ).thenAnswer((_) => Future.value(mockUserCredential));
+          ).thenAnswer((_) => Future.value(userCredential));
 
           try {
             final userCred = await signInService.google();
@@ -158,7 +158,7 @@ void main() {
           }
 
           verify(googleSignIn.signIn()).called(1);
-          verify(mockGoogleUser.authentication).called(1);
+          verify(googleUser.authentication).called(1);
           verify(firebaseAuth.signInWithCredential(any)).called(1);
         },
       );
@@ -180,7 +180,7 @@ void main() {
           }
 
           verify(googleSignIn.signIn()).called(1);
-          verifyNever(mockGoogleUser.authentication);
+          verifyNever(googleUser.authentication);
           verifyNever(firebaseAuth.signInWithCredential(any));
         },
       );
@@ -188,14 +188,14 @@ void main() {
       test(
         'throws SignInWithGoogleException on catching FirebaseAuthException',
         () async {
-          when(mockGoogleAuth.idToken).thenReturn('mockIdToken');
-          when(mockGoogleAuth.accessToken).thenReturn('mockAccessToken');
+          when(googleAuth.idToken).thenReturn('mockIdToken');
+          when(googleAuth.accessToken).thenReturn('mockAccessToken');
           when(
             googleSignIn.signIn(),
-          ).thenAnswer((_) => Future.value(mockGoogleUser));
+          ).thenAnswer((_) => Future.value(googleUser));
           when(
-            mockGoogleUser.authentication,
-          ).thenAnswer((_) => Future.value(mockGoogleAuth));
+            googleUser.authentication,
+          ).thenAnswer((_) => Future.value(googleAuth));
           when(
             firebaseAuth.signInWithCredential(any),
           ).thenThrow(FirebaseAuthException(code: 'code'));
@@ -210,7 +210,7 @@ void main() {
           }
 
           verify(googleSignIn.signIn()).called(1);
-          verify(mockGoogleUser.authentication).called(1);
+          verify(googleUser.authentication).called(1);
           verify(firebaseAuth.signInWithCredential(any)).called(1);
         },
       );
@@ -218,14 +218,14 @@ void main() {
       test(
         'throws SignInWithGoogleException on catching other exceptions',
         () async {
-          when(mockGoogleAuth.idToken).thenReturn('mockIdToken');
-          when(mockGoogleAuth.accessToken).thenReturn('mockAccessToken');
+          when(googleAuth.idToken).thenReturn('mockIdToken');
+          when(googleAuth.accessToken).thenReturn('mockAccessToken');
           when(
             googleSignIn.signIn(),
-          ).thenAnswer((_) => Future.value(mockGoogleUser));
+          ).thenAnswer((_) => Future.value(googleUser));
           when(
-            mockGoogleUser.authentication,
-          ).thenAnswer((_) => Future.value(mockGoogleAuth));
+            googleUser.authentication,
+          ).thenAnswer((_) => Future.value(googleAuth));
           when(
             firebaseAuth.signInWithCredential(any),
           ).thenThrow(Exception());
@@ -240,7 +240,7 @@ void main() {
           }
 
           verify(googleSignIn.signIn()).called(1);
-          verify(mockGoogleUser.authentication).called(1);
+          verify(googleUser.authentication).called(1);
           verify(firebaseAuth.signInWithCredential(any)).called(1);
         },
       );
@@ -262,7 +262,7 @@ void main() {
         () async {
           when(
             firebaseAuth.signInAnonymously(),
-          ).thenAnswer((_) => Future.value(mockUserCredential));
+          ).thenAnswer((_) => Future.value(userCredential));
 
           try {
             final userCred = await signInService.anonymous();
