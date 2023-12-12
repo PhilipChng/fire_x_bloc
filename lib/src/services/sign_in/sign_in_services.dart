@@ -20,12 +20,12 @@ class SignInService {
   /// Signs in with the provided [email] and [password].
   ///
   /// Throws a [SignInWithEmailAndPasswordException] if an exception occurs.
-  Future<void> emailAndPassword({
+  Future<UserCredential> emailAndPassword({
     required String email,
     required String password,
   }) async {
     try {
-      await _firebaseAuth.signInWithEmailAndPassword(
+      return await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -39,7 +39,7 @@ class SignInService {
   /// Starts the Sign In with Google Flow.
   ///
   /// Throws a [SignInWithGoogleException] if an exception occurs.
-  Future<void> google() async {
+  Future<UserCredential> google() async {
     if (_googleSignIn == null) {
       throw MissingDependenciesException.googleSignIn();
     }
@@ -57,7 +57,7 @@ class SignInService {
         idToken: googleAuth.idToken,
       );
 
-      await _firebaseAuth.signInWithCredential(credential);
+      return await _firebaseAuth.signInWithCredential(credential);
     } on FirebaseAuthException catch (e) {
       throw SignInWithGoogleException.fromCode(e.code);
     } catch (e) {
@@ -68,9 +68,9 @@ class SignInService {
   /// Signs in with an anonymous account.
   ///
   /// Throws a [SignInAnonymouslyException] if an exception occurs.
-  Future<void> anonymous() async {
+  Future<UserCredential> anonymous() async {
     try {
-      await _firebaseAuth.signInAnonymously();
+      return await _firebaseAuth.signInAnonymously();
     } on FirebaseAuthException catch (e) {
       throw SignInAnonymouslyException.fromCode(e.code);
     } catch (e) {

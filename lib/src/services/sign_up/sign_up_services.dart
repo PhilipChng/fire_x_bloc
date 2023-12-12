@@ -16,12 +16,12 @@ class SignUpService {
   /// Signs up with the provided [email] and [password].
   ///
   /// Throws a [SignUpWithEmailAndPasswordException] if an exception occurs.
-  Future<void> emailAndPassword({
+  Future<UserCredential> emailAndPassword({
     required String email,
     required String password,
   }) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
+      return await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
