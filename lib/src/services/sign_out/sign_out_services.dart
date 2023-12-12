@@ -24,7 +24,7 @@ class SignOutService {
     try {
       await _firebaseAuth.signOut();
     } catch (e) {
-      throw SignOutException();
+      throw const SignOutException();
     }
   }
 
@@ -39,7 +39,7 @@ class SignOutService {
     try {
       await _googleSignIn!.signOut();
     } catch (e) {
-      throw SignOutException();
+      throw const SignOutException();
     }
   }
 }
