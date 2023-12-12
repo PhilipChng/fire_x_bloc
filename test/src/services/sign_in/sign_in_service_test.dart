@@ -31,7 +31,7 @@ void main() {
       firebaseAuth: firebaseAuth,
     );
 
-    group('emailAndPassword', () {
+    group('email and password', () {
       test(
         'sign in successfully',
         () async {
@@ -176,7 +176,7 @@ void main() {
       );
 
       test(
-        'throws SignInWithEmailAndPasswordException on catching FirebaseAuthException',
+        'throws SignInWithGoogleException on catching FirebaseAuthException',
         () async {
           when(mockGoogleAuth.idToken).thenReturn('mockIdToken');
           when(mockGoogleAuth.accessToken).thenReturn('mockAccessToken');
@@ -206,7 +206,7 @@ void main() {
       );
 
       test(
-        'throws SignInWithEmailAndPasswordException on catching other exceptions',
+        'throws SignInWithGoogleException on catching other exceptions',
         () async {
           when(mockGoogleAuth.idToken).thenReturn('mockIdToken');
           when(mockGoogleAuth.accessToken).thenReturn('mockAccessToken');
