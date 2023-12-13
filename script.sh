@@ -17,6 +17,10 @@ build() {
 
     echo "🧪 Run Tests"
     very_good test -j 4 --coverage --test-randomize-ordering-seed random
+
+    echo "📊 Check Code Coverage"
+    genhtml coverage/lcov.info -o coverage/
+    open coverage/index.html
 }
 
 # Function for sorting imports
