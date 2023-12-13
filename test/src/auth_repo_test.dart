@@ -45,6 +45,13 @@ void main() {
       );
     });
 
+    test('creates services internally when not injected', () {
+      expect(
+        () => AuthRepo(firebaseAuth: firebaseAuth),
+        isNot(throwsException),
+      );
+    });
+
     test('sign up with email and password', () async {
       try {
         await authRepo.signUpWithEmailAndPassword(
