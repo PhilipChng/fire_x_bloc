@@ -1,3 +1,7 @@
+## 1.0.3+4 - 2024-02-22
+### Changed
+- Bump dependencies
+
 ## 1.0.2+3 - 2024-02-02
 ### Changed
 - Bump dependencies
