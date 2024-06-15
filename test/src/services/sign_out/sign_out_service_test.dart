@@ -18,7 +18,6 @@ void main() {
     late MockFirebaseAuth firebaseAuth;
     late MockGoogleSignIn googleSignIn;
     late SignOutService signOutService;
-    late SignOutService signOutServiceWithoutGoogle;
 
     setUp(() {
       firebaseAuth = MockFirebaseAuth();
@@ -26,9 +25,6 @@ void main() {
       signOutService = SignOutService(
         firebaseAuth: firebaseAuth,
         googleSignIn: googleSignIn,
-      );
-      signOutServiceWithoutGoogle = SignOutService(
-        firebaseAuth: firebaseAuth,
       );
     });
 
@@ -83,15 +79,6 @@ void main() {
         }
 
         verify(googleSignIn.signOut()).called(1);
-      });
-
-      test('throws MissingDependencyException', () async {
-        try {
-          await signOutServiceWithoutGoogle.google();
-          fail('Did not throw as expected');
-        } catch (e) {
-          expect(e, isA<MissingDependencyException>());
-        }
       });
     });
   });

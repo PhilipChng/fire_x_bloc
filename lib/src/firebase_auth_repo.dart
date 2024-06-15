@@ -5,19 +5,18 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:auth_repo/src/services/services.dart';
 
-/// {@template auth_repo}
+/// {@template firebase_auth_repo}
 /// Repository which manages user authentication.
 /// {@endtemplate}
-class AuthRepo {
-  /// {@macro auth_repo}
-  AuthRepo({
+class FirebaseAuthRepo {
+  /// {@macro firebase_auth_repo}
+  FirebaseAuthRepo({
     required FirebaseAuth firebaseAuth,
     GoogleSignIn? googleSignIn,
     SignInService? signInService,
     SignOutService? signOutService,
     SignUpService? signUpService,
-  })  : _googleSignIn = googleSignIn,
-        _signInService = signInService ??
+  })  : _signInService = signInService ??
             SignInService(
               firebaseAuth: firebaseAuth,
               googleSignIn: googleSignIn,
@@ -31,8 +30,6 @@ class AuthRepo {
             SignUpService(
               firebaseAuth: firebaseAuth,
             );
-
-  final GoogleSignIn? _googleSignIn;
 
   final SignInService _signInService;
   final SignOutService _signOutService;
@@ -60,7 +57,7 @@ class AuthRepo {
 
   /// Signs out from all providers.
   Future<void> signOut() async {
-    if (_googleSignIn != null) await _signOutService.google();
-    await _signOutService.firebase();
+    unawaited(_signOutService.google());
+    unawaited(_signOutService.firebase());
   }
 }
