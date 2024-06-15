@@ -1,9 +1,9 @@
-/// {@template log_in_with_email_and_password_failure}
+/// {@template sign_in_with_email_and_password_failure}
 /// Thrown during the SignIn process if a failure occurs.
 /// https://pub.dev/documentation/firebase_auth/latest/firebase_auth/FirebaseAuth/signInWithEmailAndPassword.html
 /// {@endtemplate}
 class SignInWithEmailAndPasswordException implements Exception {
-  /// {@macro log_in_with_email_and_password_failure}
+  /// {@macro sign_in_with_email_and_password_failure}
   const SignInWithEmailAndPasswordException([
     this.message = 'An unknown exception occurred.',
   ]);

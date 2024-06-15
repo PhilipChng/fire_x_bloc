@@ -134,6 +134,204 @@ void main() {
       );
     });
 
+    group('email link', () {
+      late String email;
+      late ActionCodeSettings acs;
+
+      setUp(() {
+        email = 'testing_email@developer.com';
+        acs = ActionCodeSettings(
+          url: 'acsURL',
+          handleCodeInApp: true,
+          iOSBundleId: 'iOSBundleId',
+          androidPackageName: 'androidPackageName',
+          androidInstallApp: true,
+        );
+      });
+
+      group('send', () {
+        test(
+          'successfully',
+          () async {
+            when(
+              firebaseAuth.sendSignInLinkToEmail(
+                email: email,
+                actionCodeSettings: acs,
+              ),
+            ).thenAnswer((_) => Future.value());
+
+            try {
+              await signInService.sendEmailLink(email: email, acs: acs);
+            } catch (e) {
+              fail('Did not pass as expected');
+            }
+
+            verify(
+              firebaseAuth.sendSignInLinkToEmail(
+                email: email,
+                actionCodeSettings: acs,
+              ),
+            ).called(1);
+          },
+        );
+
+        test(
+          'throws SignInWithEmailLinkException on catching FirebaseAuthException',
+          () async {
+            when(
+              firebaseAuth.sendSignInLinkToEmail(
+                email: email,
+                actionCodeSettings: acs,
+              ),
+            ).thenThrow(FirebaseAuthException(code: 'code'));
+
+            try {
+              await signInService.sendEmailLink(email: email, acs: acs);
+              fail('Did not throw as expected');
+            } catch (e) {
+              expect(e, isA<SignInWithEmailLinkException>());
+              final error = e as SignInWithEmailLinkException;
+              expect(error.message, 'An unknown exception occurred.');
+            }
+          },
+        );
+
+        test(
+          'throws SignInWithEmailLinkException on catching other exceptions',
+          () async {
+            when(
+              firebaseAuth.sendSignInLinkToEmail(
+                email: email,
+                actionCodeSettings: acs,
+              ),
+            ).thenThrow(Exception());
+
+            try {
+              await signInService.sendEmailLink(email: email, acs: acs);
+              fail('Did not throw as expected');
+            } catch (e) {
+              expect(e, isA<SignInWithEmailLinkException>());
+              final error = e as SignInWithEmailLinkException;
+              expect(error.message, 'An unknown exception occurred.');
+            }
+          },
+        );
+      });
+
+      group('verify', () {
+        late String email;
+        late String emailLink;
+
+        setUp(() {
+          email = 'testing_email@developer.com';
+          emailLink = 'emailLink';
+        });
+
+        test(
+          'successfully',
+          () async {
+            when(
+              firebaseAuth.isSignInWithEmailLink(emailLink),
+            ).thenAnswer((_) => true);
+
+            when(
+              firebaseAuth.signInWithEmailLink(
+                email: email,
+                emailLink: emailLink,
+              ),
+            ).thenAnswer((_) => Future.value(userCredential));
+
+            try {
+              final userCred = await signInService.verifyEmailLink(
+                email: email,
+                emailLink: emailLink,
+              );
+              expect(userCred, isA<UserCredential>());
+            } catch (e) {
+              fail('Did not pass as expected');
+            }
+          },
+        );
+
+        test(
+          'throws SignInWithEmailLinkException on catching FirebaseAuthException',
+          () async {
+            when(
+              firebaseAuth.isSignInWithEmailLink(emailLink),
+            ).thenAnswer((_) => true);
+
+            when(
+              firebaseAuth.signInWithEmailLink(
+                email: email,
+                emailLink: emailLink,
+              ),
+            ).thenThrow(FirebaseAuthException(code: 'code'));
+
+            try {
+              await signInService.verifyEmailLink(
+                email: email,
+                emailLink: emailLink,
+              );
+              fail('Did not throw as expected');
+            } catch (e) {
+              expect(e, isA<SignInWithEmailLinkException>());
+              final error = e as SignInWithEmailLinkException;
+              expect(error.message, 'An unknown exception occurred.');
+            }
+          },
+        );
+
+        test(
+          'throws SignInWithEmailLinkException on catching other exceptions',
+          () async {
+            when(
+              firebaseAuth.isSignInWithEmailLink(emailLink),
+            ).thenAnswer((_) => true);
+
+            when(
+              firebaseAuth.signInWithEmailLink(
+                email: email,
+                emailLink: emailLink,
+              ),
+            ).thenThrow(Exception());
+
+            try {
+              await signInService.verifyEmailLink(
+                email: email,
+                emailLink: emailLink,
+              );
+              fail('Did not throw as expected');
+            } catch (e) {
+              expect(e, isA<SignInWithEmailLinkException>());
+              final error = e as SignInWithEmailLinkException;
+              expect(error.message, 'An unknown exception occurred.');
+            }
+          },
+        );
+
+        test(
+          'throws SignInWithEmailLinkException on invalid email link',
+          () async {
+            when(
+              firebaseAuth.isSignInWithEmailLink(emailLink),
+            ).thenAnswer((_) => false);
+
+            try {
+              await signInService.verifyEmailLink(
+                email: email,
+                emailLink: emailLink,
+              );
+              fail('Did not throw as expected');
+            } catch (e) {
+              expect(e, isA<SignInWithEmailLinkException>());
+              final error = e as SignInWithEmailLinkException;
+              expect(error.message, 'An unknown exception occurred.');
+            }
+          },
+        );
+      });
+    });
+
     group('google', () {
       test(
         'sign in successfully',

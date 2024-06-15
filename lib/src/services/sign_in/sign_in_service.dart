@@ -36,6 +36,48 @@ class SignInService {
     }
   }
 
+  /// Sends an email link to the provided [email].
+  ///
+  /// Throws a [SignInWithEmailLinkException] if an exception occurs.
+  Future<void> sendEmailLink({
+    required String email,
+    required ActionCodeSettings acs,
+  }) async {
+    try {
+      return await _firebaseAuth.sendSignInLinkToEmail(
+        email: email,
+        actionCodeSettings: acs,
+      );
+    } on FirebaseAuthException catch (e) {
+      throw SignInWithEmailLinkException.fromCode(e.code);
+    } catch (_) {
+      throw const SignInWithEmailLinkException();
+    }
+  }
+
+  /// Sign in with the provided [email] and [emailLink].
+  ///
+  /// Throws a [SignInWithEmailLinkException] if an exception occurs.
+  Future<UserCredential> verifyEmailLink({
+    required String email,
+    required String emailLink,
+  }) async {
+    try {
+      if (_firebaseAuth.isSignInWithEmailLink(emailLink)) {
+        return await _firebaseAuth.signInWithEmailLink(
+          email: email,
+          emailLink: emailLink,
+        );
+      }
+
+      throw SignInWithEmailLinkException.fromCode('invalid-email-link');
+    } on FirebaseAuthException catch (e) {
+      throw SignInWithEmailLinkException.fromCode(e.code);
+    } catch (_) {
+      throw const SignInWithEmailLinkException();
+    }
+  }
+
   /// Starts the Sign In with Google Flow.
   ///
   /// Throws a [SignInWithGoogleException] if an exception occurs.
