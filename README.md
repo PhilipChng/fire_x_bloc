@@ -13,7 +13,7 @@ A Flutter package for managing authentication domain.
 Install via `flutter pub add`:
 
 ```sh
-dart pub add firebase_auth_bloc
+dart pub add firebase_authentication_bloc
 ```
 
 ---

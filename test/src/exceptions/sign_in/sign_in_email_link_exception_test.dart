@@ -2,7 +2,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:firebase_auth_bloc/firebase_auth_bloc.dart';
+import 'package:firebase_authentication_bloc/firebase_authentication_bloc.dart';
 
 void main() {
   group('SignInWithEmailLinkException Tests', () {

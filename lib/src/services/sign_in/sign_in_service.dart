@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import 'package:firebase_auth_bloc/src/exceptions/exceptions.dart';
+import 'package:firebase_authentication_bloc/src/exceptions/exceptions.dart';
 
 /// {@template sign_in_service}
 /// Service for signing in.
