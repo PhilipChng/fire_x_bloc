@@ -5,7 +5,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'package:auth_repo/auth_repo.dart';
-import 'firebase_auth_repo_test.mocks.dart';
+import 'firebase_auth_repository_test.mocks.dart';
 
 @GenerateNiceMocks([
   MockSpec<FirebaseAuth>(),
@@ -21,8 +21,8 @@ void main() {
     late MockSignInService signInService;
     late MockSignOutService signOutService;
     late MockSignUpService signUpService;
-    late FirebaseAuthRepo authRepo;
-    late FirebaseAuthRepo authRepoWithoutGoogle;
+    late FirebaseAuthRepository authRepo;
+    late FirebaseAuthRepository authRepoWithoutGoogle;
 
     setUp(() {
       firebaseAuth = MockFirebaseAuth();
@@ -30,14 +30,14 @@ void main() {
       signInService = MockSignInService();
       signOutService = MockSignOutService();
       signUpService = MockSignUpService();
-      authRepo = FirebaseAuthRepo(
+      authRepo = FirebaseAuthRepository(
         firebaseAuth: firebaseAuth,
         googleSignIn: googleSignIn,
         signInService: signInService,
         signOutService: signOutService,
         signUpService: signUpService,
       );
-      authRepoWithoutGoogle = FirebaseAuthRepo(
+      authRepoWithoutGoogle = FirebaseAuthRepository(
         firebaseAuth: firebaseAuth,
         signInService: signInService,
         signOutService: signOutService,
@@ -47,7 +47,7 @@ void main() {
 
     test('creates services internally when not injected', () {
       expect(
-        () => FirebaseAuthRepo(firebaseAuth: firebaseAuth),
+        () => FirebaseAuthRepository(firebaseAuth: firebaseAuth),
         isNot(throwsException),
       );
     });

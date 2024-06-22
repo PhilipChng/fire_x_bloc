@@ -5,12 +5,12 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:auth_repo/src/services/services.dart';
 
-/// {@template firebase_auth_repo}
+/// {@template firebase_auth_repository}
 /// Repository which manages user authentication.
 /// {@endtemplate}
-class FirebaseAuthRepo {
-  /// {@macro firebase_auth_repo}
-  FirebaseAuthRepo({
+class FirebaseAuthRepository {
+  /// {@macro firebase_auth_repository}
+  FirebaseAuthRepository({
     required FirebaseAuth firebaseAuth,
     GoogleSignIn? googleSignIn,
     SignInService? signInService,
