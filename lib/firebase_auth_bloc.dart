@@ -1,5 +1,5 @@
 /// A Flutter package for managing authentication domain.
-library auth_repo;
+library firebase_auth_bloc;
 
 export 'src/exceptions/exceptions.dart';
 export 'src/repositories/repositories.dart';

@@ -1,4 +1,4 @@
-name: auth_repo
+name: firebase_auth_bloc
 description: A Flutter package for managing authentication domain.
 version: 1.0.6+7
 publish_to: none

@@ -2,7 +2,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:auth_repo/auth_repo.dart';
+import 'package:firebase_auth_bloc/firebase_auth_bloc.dart';
 
 void main() {
   group('SignInWithGoogleException Tests', () {

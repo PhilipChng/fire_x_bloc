@@ -15,7 +15,5 @@
     }
   ],
   "useGitignore": true,
-  "words": [
-    "auth_repo"
-  ]
+  "words": ["firebase_auth_bloc"]
 }
