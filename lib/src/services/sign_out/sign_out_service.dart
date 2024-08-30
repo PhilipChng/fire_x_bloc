@@ -35,7 +35,7 @@ class SignOutService {
     if (_googleSignIn == null) return;
 
     try {
-      await _googleSignIn!.signOut();
+      await _googleSignIn.signOut();
     } catch (e) {
       throw const SignOutException();
     }

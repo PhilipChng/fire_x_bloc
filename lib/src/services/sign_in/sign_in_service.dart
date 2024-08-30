@@ -87,7 +87,7 @@ class SignInService {
     }
 
     try {
-      final googleUser = await _googleSignIn?.signIn();
+      final googleUser = await _googleSignIn.signIn();
 
       if (googleUser == null) {
         throw FirebaseAuthException(code: 'user-cancelled');

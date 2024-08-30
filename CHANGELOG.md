@@ -1,3 +1,7 @@
+## 1.0.9+10 - 2024-08-30
+### Changed
+- Bump dependencies
+
 ## 1.0.8+9 - 2024-08-17
 ### Changed
 - Update packages
