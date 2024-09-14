@@ -1,3 +1,7 @@
+## 1.0.10+11 - 2024-09-14
+### Changed
+- Downgrade dependencies
+
 ## 1.0.9+10 - 2024-08-30
 ### Changed
 - Bump dependencies
