@@ -2,7 +2,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:firebase_authentication_bloc/firebase_authentication_bloc.dart';
+import 'package:fire_x_bloc/fire_x_bloc.dart';
 
 void main() {
   group('SignUpWithEmailAndPasswordException Tests', () {

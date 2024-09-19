@@ -1,6 +1,6 @@
-name: firebase_authentication_bloc
-description: A Flutter package for managing authentication domain.
-version: 1.0.10+11
+name: fire_x_bloc
+description: FireXBloc wraps FirebaseAuth with Bloc, offering a simplified and efficient solution for managing authentication in your apps.
+version: 1.0.11+12
 publish_to: none
 
 environment:
@@ -11,8 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  firebase_auth: 5.1.4
-  firebase_core: 3.3.0
+  firebase_auth: ^5.3.0
+  firebase_core: ^3.5.0
   google_sign_in: ^6.2.1
 
 dev_dependencies:

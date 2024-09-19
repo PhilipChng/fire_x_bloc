@@ -6,7 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'package:firebase_authentication_bloc/firebase_authentication_bloc.dart';
+import 'package:fire_x_bloc/fire_x_bloc.dart';
 import 'sign_out_service_test.mocks.dart';
 
 @GenerateNiceMocks([

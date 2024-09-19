@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'package:firebase_authentication_bloc/firebase_authentication_bloc.dart';
+import 'package:fire_x_bloc/fire_x_bloc.dart';
 import 'sign_up_service_test.mocks.dart';
 
 @GenerateNiceMocks([

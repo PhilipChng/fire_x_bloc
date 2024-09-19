@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:firebase_authentication_bloc/src/exceptions/exceptions.dart';
+import 'package:fire_x_bloc/src/exceptions/exceptions.dart';
 
 /// {@template sign_up_service}
 /// Service for signing up.
