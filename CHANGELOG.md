@@ -1,3 +1,11 @@
+## 1.1.0+13 - 2024-09-20
+### Added
+- AuthenticationBloc
+
+## 1.0.11+12 - 2024-09-19
+### Changed
+- Refactor with new package name
+
 ## 1.0.10+11 - 2024-09-14
 ### Changed
 - Downgrade dependencies
