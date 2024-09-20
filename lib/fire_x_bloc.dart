@@ -3,6 +3,7 @@
 /// for managing authentication in your apps.
 library fire_x;
 
+export 'src/blocs/blocs.dart';
 export 'src/exceptions/exceptions.dart';
 export 'src/repositories/repositories.dart';
 export 'src/services/services.dart';
