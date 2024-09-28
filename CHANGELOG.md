@@ -1,3 +1,7 @@
+## 1.1.1+14 - 2024-09-28
+### Changed
+- Updated firebase packages
+
 ## 1.1.0+13 - 2024-09-20
 ### Added
 - AuthenticationBloc
