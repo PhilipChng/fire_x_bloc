@@ -1,6 +1,6 @@
 name: fire_x_bloc
 description: FireXBloc wraps FirebaseAuth with Bloc, offering a simplified and efficient solution for managing authentication in your apps.
-version: 1.1.1+14
+version: 1.2.0+15
 publish_to: none
 
 environment:

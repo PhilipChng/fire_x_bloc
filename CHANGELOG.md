@@ -1,3 +1,7 @@
+## 1.2.0+15 - 2024-10-06
+### Added
+- FirebaseAuthUserMixin
+
 ## 1.1.1+14 - 2024-09-28
 ### Changed
 - Updated firebase packages
