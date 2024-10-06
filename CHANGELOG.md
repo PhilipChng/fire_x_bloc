@@ -1,4 +1,4 @@
-## Unreleased
+## 1.2.0+15 - 2024-10-06
 ### Added
 - FirebaseAuthUserMixin
 
